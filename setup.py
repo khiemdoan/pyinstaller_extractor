@@ -2,7 +2,7 @@ from pathlib import Path
 
 from setuptools import setup
 
-from version import VERSION
+from pyinstaller_extractor.version import VERSION
 
 HERE = Path(__file__).parent
 

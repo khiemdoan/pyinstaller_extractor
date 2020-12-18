@@ -8,7 +8,7 @@ from PyInstaller.archive.readers import CArchiveReader
 from uncompyle6 import code_deparse
 from xdis import load_module_from_file_object
 
-from version import VERSION
+from pyinstaller_extractor.version import VERSION
 
 
 class Extractor:
