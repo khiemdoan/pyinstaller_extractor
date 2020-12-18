@@ -1,1 +1,1 @@
-# pyinstaller_extractor
+# PyInstaller Extractor
