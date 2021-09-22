@@ -43,14 +43,15 @@ class Extractor:
                 name += '.pyc'
 
             print(name)
-            with (extracted_dir / name).open('wb+') as fp:
+            file_path = extracted_dir / name
+            file_path.parent.mkdir(parents=True, exist_ok=True)
+            with (file_path).open('wb+') as fp:
                 if typcd == 's':
                     fp.write(pyc_header)
                 fp.write(data)
 
                 if typcd in ('s', 'm'):
                     self.extract_source(fp, extracted_dir / (nm + '.py'))
-
 
     def extract_pyc_header(self, arch: CArchiveReader) -> bytes:
         ndx = arch.toc.find('pyimod01_os_path')
@@ -65,10 +66,12 @@ class Extractor:
         return data[:8]
 
     def extract_source(self, pyc_file, sourcefile):
-        with open(sourcefile, 'w') as srcfile:
-            pyc_file.seek(0)
-            float_version, timestamp, _, co, _, source_size, _ = load_module_from_file_object(pyc_file)
-
+        pyc_file.seek(0)
+        float_version, timestamp, _, co, _, source_size, _ = load_module_from_file_object(pyc_file)
+        if float_version >= 3.8:
+            return
+        
+        with open(sourcefile, 'w') as srcfile:            
             srcfile.write(f'# From PyInstaller Extractor {VERSION} by Khiem Doan with love\n')
             if co.co_filename:
                 srcfile.writelines(f'# File name: {co.co_filename}\n')
