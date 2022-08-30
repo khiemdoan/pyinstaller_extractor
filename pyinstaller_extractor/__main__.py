@@ -84,10 +84,10 @@ class Extractor:
             code_deparse(co, srcfile, float_version)
 
 
-if __name__ == '__main__':
+def main():
     description = f'PyInstaller Extractor {VERSION}'
 
-    parser = argparse.ArgumentParser(prog='python -m pyinstaller_extractor', description='PyInstaller Extractor')
+    parser = argparse.ArgumentParser(prog='python -m pyinstaller_extractor', description=description)
     parser.add_argument(dest='file', type=str, nargs='?', metavar='path_to_file',
                         help='PyInstaller file')
     parser.add_argument('-d', '--dir', dest='dir', type=str, nargs='?', metavar='path_to_directory',
@@ -106,3 +106,7 @@ if __name__ == '__main__':
 
     extractor = Extractor(filepath)
     extractor.extract_to(extracted_dir)
+
+
+if __name__ == '__main__':
+    main()

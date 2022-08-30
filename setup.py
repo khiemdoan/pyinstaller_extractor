@@ -41,7 +41,7 @@ setup(
     install_requires=['pyinstaller', 'uncompyle6', 'xdis'],
     entry_points={
         'console_scripts': [
-            'pyinstaller_extractor=pyinstaller_extractor.__main__:main',
+            'pyinstaller-extractor=pyinstaller_extractor.__main__:main',
         ]
     },
 )

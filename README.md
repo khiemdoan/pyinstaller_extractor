@@ -9,5 +9,5 @@ pip install pyinstaller-extractor
 ## Using
 
 ```bash
-python -m pyinstaller_extractor <your_binary>
+pyinstaller-extractor <your_binary>
 ```
